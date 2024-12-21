@@ -1,0 +1,32 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "automerge": true,
+  "platformAutomerge": true,
+  "git-submodules": {
+    "enabled": true
+  },
+  "labels": [ "dependency upgrade" ],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^line-openapi$"],
+      "labels": ["dependency upgrade", "line-openapi-update"]
+    },
+    {
+      "matchPaths": [
+        "examples/*"
+      ],
+      "postUpgradeTasks": {
+        "commands": [
+          "npm install"
+        ],
+        "fileFilters": [
+          "package.json",
+          "package-lock.json"
+        ]
+      }
+    }
+  ]
+}
